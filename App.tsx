@@ -20,11 +20,6 @@ import FloatingCTAs from './components/FloatingCTAs';
 import Button from './components/Button';
 import { SERVICES, PROCESS_STEPS, TESTIMONIALS, CONTACT_LINKS } from './constants';
 
-declare global {
-  interface Window {
-    VANTA: any;
-  }
-}
 
 // Component for randomized floating symbols in the background
 const FloatingBackgroundSymbols = () => {
@@ -84,7 +79,6 @@ const App: React.FC = () => {
     return false;
   });
 
-  const vantaEffect = useRef<any>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -103,38 +97,6 @@ const App: React.FC = () => {
     }
   }, [darkMode]);
 
-  // Handle Vanta.js Initialization and Theme Changes
-  useEffect(() => {
-    if (!vantaEffect.current && window.VANTA) {
-      vantaEffect.current = window.VANTA.NET({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: darkMode ? 0x8b5cf6 : 0x8b5cf6,
-        backgroundColor: darkMode ? 0x030712 : 0xffffff,
-        points: 12.00,
-        maxDistance: 22.00,
-        spacing: 16.00
-      });
-    } else if (vantaEffect.current) {
-        // Update colors dynamically if effect already exists
-        vantaEffect.current.setOptions({
-            color: 0x8b5cf6,
-            backgroundColor: darkMode ? 0x030712 : 0xffffff
-        });
-    }
-
-    return () => {
-      if (vantaEffect.current) {
-        // We keep it alive for smooth transitions
-      }
-    };
-  }, [darkMode]);
 
   const toggleTheme = () => setDarkMode(!darkMode);
 
