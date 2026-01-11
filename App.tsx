@@ -183,7 +183,7 @@ const App: React.FC = () => {
               {[
                 { label: 'Ad Spend Managed', value: '$1M+' },
                 { label: 'Average ROAS', value: '3.8x' },
-                { label: 'Projects Completed', value: '150+' },
+                { label: 'Projects Completed', value: '1500+' },
                 { label: 'Client Satisfaction', value: '100%' },
               ].map((stat, i) => (
                 <div key={i} className="glass p-4 rounded-2xl border border-slate-200 dark:border-white/5">
